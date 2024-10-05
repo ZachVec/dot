@@ -12,6 +12,7 @@ local lspserver = {
     return clients[1].name .. "(" .. tostring(#clients) .. ")"
   end,
   icon = " LSP:",
+  cond = function() return string.sub(vim.bo.filetype, 1, 3) ~= "dap" end,
 }
 
 return {
