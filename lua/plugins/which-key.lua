@@ -6,7 +6,6 @@ return {
       {
         mode = { "n", "v" },
         { "<leader>wm", hidden = true },
-        { "<leader>gh", group = "hunks" },
         { "<leader>c", group = "Code" },
         { "<leader>f", group = "Find" },
         { "<leader>g", group = "Git" },

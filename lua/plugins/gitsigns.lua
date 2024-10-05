@@ -16,6 +16,5 @@ return {
       map("n", "<leader>gb", function() gs.blame_line({ full = true }) end, "Blame Line")
       map("n", "<leader>gd", function() gs.diffthis("~") end, "Diff This")
     end
-  end
-,
+  end,
 }
