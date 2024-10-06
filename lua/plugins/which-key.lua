@@ -5,7 +5,7 @@ return {
     opts.spec = {
       {
         mode = { "n", "v" },
-        { "<leader>wm", hidden = true },
+        { "<leader>w", hidden = true },
         { "<leader>c", group = "Code" },
         { "<leader>f", group = "Find" },
         { "<leader>g", group = "Git" },
@@ -18,6 +18,7 @@ return {
         { "]", group = "next" },
         { "g", group = "goto" },
         { "gs", group = "surround" },
+        { "<leader>K", icon = "󰗚 " }
       },
     }
   end,

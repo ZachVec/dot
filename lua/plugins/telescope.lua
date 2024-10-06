@@ -30,9 +30,6 @@ return {
       { "<leader>;t", "<cmd>Telescope aerial<cr>", desc = "Tags" },
       { "<leader>;r", "<cmd>Telescope registers<cr>", desc = "Registers" },
       { "<leader>;c", LazyVim.pick("colorscheme"), desc = "Colorscheme" },
-      --
-      -- disable aerial
-      { "<leader>ss", false },
     }
   end,
 
