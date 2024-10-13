@@ -11,8 +11,7 @@ local lspserver = {
     end
     return clients[1].name .. "(" .. tostring(#clients) .. ")"
   end,
-  icon = " LSP:",
-  cond = function() return string.sub(vim.bo.filetype, 1, 3) ~= "dap" end,
+  icon = " :",
 }
 
 return {
@@ -25,12 +24,12 @@ return {
     table.insert(opts.options.disabled_filetypes, "neo-tree")
     table.insert(opts.options.disabled_filetypes, "aerial")
     opts.winbar = {
-      lualine_a = { lspserver },
       lualine_b = opts.sections.lualine_c,
     }
     opts.inactive_winbar = opts.winbar
     opts.sections.lualine_a = { "tabs" }
     opts.sections.lualine_b = { "branch", "diff" }
     opts.sections.lualine_c = {}
+    opts.sections.lualine_z = { lspserver }
   end,
 }
