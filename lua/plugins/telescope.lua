@@ -16,6 +16,7 @@ return {
       { "<leader>fm", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
       { "<leader>fo", "<cmd>Telescope vim_options<cr>", desc = "Options" },
       { "<leader>fq", "<cmd>Telescope quickfix<cr>", desc = "Quickfix List" },
+      { "<leader>fs", "<cmd>Telescope aerial<cr>", desc = "Symbols" },
 
       -- enhanced builtin tools: grep/command
       { "<leader>/f", LazyVim.pick("live_grep"), desc = "Grep Files" },
@@ -27,7 +28,6 @@ return {
 
       -- list
       { "<leader>;m", "<cmd>Telescope marks<cr>", desc = "Bookmarks" },
-      { "<leader>;t", "<cmd>Telescope aerial<cr>", desc = "Tags" },
       { "<leader>;r", "<cmd>Telescope registers<cr>", desc = "Registers" },
       { "<leader>;c", LazyVim.pick("colorscheme"), desc = "Colorscheme" },
     }
