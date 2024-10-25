@@ -37,12 +37,16 @@ return {
     defaults = vim.tbl_deep_extend("force", require("telescope.themes").get_ivy(), {
       mappings = {
         i = {
-          ["<C-j>"] = actions.cycle_history_next,
-          ["<C-k>"] = actions.cycle_history_prev,
+          ["<C-h>"] = actions.cycle_history_prev,
+          ["<C-l>"] = actions.cycle_history_next,
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
         },
         n = {
-          ["<C-j>"] = actions.cycle_history_next,
-          ["<C-k>"] = actions.cycle_history_prev,
+          ["h"] = actions.cycle_history_prev,
+          ["l"] = actions.cycle_history_next,
+          ["j"] = actions.move_selection_next,
+          ["k"] = actions.move_selection_previous,
         },
       },
     }),
