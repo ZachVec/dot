@@ -21,8 +21,9 @@ return {
   end,
   opts = function(_, opts)
     table.insert(opts.options.disabled_filetypes, "dashboard")
-    table.insert(opts.options.disabled_filetypes, "neo-tree")
-    table.insert(opts.options.disabled_filetypes, "aerial")
+    vim.tbl_deep_extend("force", opts.options.disabled_filetypes, {
+      statusline = { "neo-tree", "aerial" }
+    })
     opts.winbar = {
       lualine_b = opts.sections.lualine_c,
     }
