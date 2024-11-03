@@ -13,6 +13,8 @@ return {
         { "<leader>;", group = "list", icon = " " },
         { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
         { "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
+        { "<leader>n", group = "navigate", icon = { icon = "󰗚 ", color = "green" } },
+        { "<leader>m", group = "message", icon = { icon = "󰍦 ", color = "orange" } },
         { "[", group = "prev" },
         { "]", group = "next" },
         { "g", group = "goto" },
