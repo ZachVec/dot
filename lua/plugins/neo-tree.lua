@@ -23,16 +23,16 @@ return {
         end,
         desc = "Buffer Explorer",
       },
-      {
-        "<leader>ns",
-        function()
-          require("neo-tree.command").execute({ source = "document_symbols", toggle = true })
-        end,
-        desc = "Symbol Explorer",
-      },
+      -- {
+      --   "<leader>ns",
+      --   function()
+      --     require("neo-tree.command").execute({ source = "document_symbols", toggle = true })
+      --   end,
+      --   desc = "Symbol Explorer",
+      -- },
     }
   end,
-  opts = function (_, opts)
-    table.insert(opts.sources, "document_symbols")
-  end
+  -- opts = function (_, opts)
+  --   table.insert(opts.sources, "document_symbols")
+  -- end
 }
