@@ -51,12 +51,6 @@ vim.keymap.del("n", "<leader>L")
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
 -- vim.keymap.del("n", "<c-/>")
-
--- terminal mappings
-vim.keymap.del("t", "<C-h>")
-vim.keymap.del("t", "<C-j>")
-vim.keymap.del("t", "<C-k>")
-vim.keymap.del("t", "<C-l>")
 -- vim.keymap.del("t", "<c-/>")
 
 -- windows
@@ -96,7 +90,7 @@ vim.keymap.set("n", "gl", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 
 -- Lazygit
 vim.keymap.set("n", "<leader>gt", function()
-  LazyVim.lazygit({ cwd = LazyVim.root.git() })
+  Snacks.lazygit({ cwd = LazyVim.root.git() })
 end, { desc = "Lazygit" })
 
 vim.keymap.set("n", "<A-k>", "<cmd>resize +1<cr>", { desc = "Increase Window Height" })
