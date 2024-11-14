@@ -15,6 +15,7 @@ vim.keymap.del("n", "<leader>bb")
 vim.keymap.del("n", "<leader>`")
 vim.keymap.del("n", "<leader>bd")
 vim.keymap.del("n", "<leader>bD")
+vim.keymap.del("n", "<leader>bo")
 
 -- Lazy
 vim.keymap.del("n", "<leader>l")
@@ -46,6 +47,7 @@ vim.keymap.del("n", "<leader>uI")
 
 -- LazyVim ChangeLog
 vim.keymap.del("n", "<leader>L")
+vim.keymap.del("n", "<leader>K")
 
 -- terminal
 vim.keymap.del("n", "<leader>ft")

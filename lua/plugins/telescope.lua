@@ -23,13 +23,13 @@ return {
       { "<leader>/F", LazyVim.pick("live_grep", { root = false }), desc = "Grep Files (cwd)" },
       { "<leader>/b", "<cmd>Telescope live_grep grep_open_files=true<cr>", desc = "Grep Buffers" },
       { "<leader>//", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer Fuzzy Find" },
-      { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       { "<leader><leader>", "<cmd>Telescope resume<cr>", desc = "Resume" },
 
       -- list
       { "<leader>;m", "<cmd>Telescope marks<cr>", desc = "Bookmarks" },
       { "<leader>;r", "<cmd>Telescope registers<cr>", desc = "Registers" },
       { "<leader>;c", LazyVim.pick("colorscheme"), desc = "Colorscheme" },
+      { "<leader>;:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
     }
   end,
 

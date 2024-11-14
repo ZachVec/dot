@@ -1,6 +1,16 @@
--- local icons = { " ", " ", " ", " ", " ", " ", " ", " ", "󰒲 ", " ", "󰗚 " }
+-- Find More Icons Here! https://www.nerdfonts.com/cheat-sheet
 return {
   "folke/which-key.nvim",
+  keys = {
+    { "<leader>?", false },
+    {
+      "<leader>;k",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Keymaps",
+    },
+  },
   opts = function(_, opts)
     opts.spec = {
       {
@@ -12,14 +22,12 @@ return {
         { "<leader>/", group = "grep", icon = " " },
         { "<leader>;", group = "list", icon = " " },
         { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
-        { "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
-        { "<leader>n", group = "navigate", icon = { icon = "󰗚 ", color = "green" } },
-        { "<leader>m", group = "message", icon = { icon = "󰍦 ", color = "orange" } },
+        { "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "cyan" } },
+        { "<leader>e", group = "explorer", icon = { icon = "󰖟 ", color = "cyan" } },
+        { "<leader>m", group = "message", icon = { icon = "󰍦 ", color = "cyan" } },
         { "[", group = "prev" },
         { "]", group = "next" },
         { "g", group = "goto" },
-        { "gs", group = "surround" },
-        { "<leader>K", icon = "󰗚 " }
       },
     }
   end,
