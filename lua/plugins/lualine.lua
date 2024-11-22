@@ -19,18 +19,14 @@ return {
   init = function()
     vim.opt.showtabline = 0
   end,
-  opts = function(_, opts)
-    table.insert(opts.options.disabled_filetypes, "dashboard")
-    vim.tbl_deep_extend("force", opts.options.disabled_filetypes, {
-      statusline = { "neo-tree", "aerial" }
-    })
-    opts.winbar = {
-      lualine_b = opts.sections.lualine_c,
-    }
-    opts.inactive_winbar = opts.winbar
-    opts.sections.lualine_a = { "tabs" }
-    opts.sections.lualine_b = { "branch", "diff" }
-    opts.sections.lualine_c = {}
-    opts.sections.lualine_z = { lspserver }
-  end,
+  opts = {
+    options = {
+      disabled_filetypes = {
+        statusline = {
+          "neo-tree",
+          "aerial",
+        },
+      },
+    },
+  },
 }
