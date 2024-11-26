@@ -3,3 +3,4 @@
 -- Add any additional options here
 vim.g.autoformat = false
 vim.g.trouble_lualine = false
+vim.o.showtabline = 0
