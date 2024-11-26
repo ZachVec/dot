@@ -31,10 +31,10 @@ return {
       sections = {
         lualine_a = { "tabs" },
         lualine_b = opts.sections.lualine_b,
-        lualine_c = { lspserver },
+        lualine_c = {},
         lualine_x = opts.sections.lualine_x,
         lualine_y = opts.sections.lualine_y,
-        lualine_z = opts.sections.lualine_z,
+        lualine_z = { lspserver },
       },
       winbar = {
         lualine_c = {
