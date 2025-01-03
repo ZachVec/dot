@@ -6,3 +6,6 @@ vim.g.snacks_animate = false
 vim.g.trouble_lualine = false
 vim.o.showtabline = 0
 vim.o.jumpoptions = "stack"
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
