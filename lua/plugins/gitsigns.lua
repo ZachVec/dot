@@ -7,8 +7,22 @@ return {
       local function map(mode, l, r, desc)
         vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
       end
-      map("n", "]h", function() gs.nav_hunk("last") end, "Last Hunk")
-      map("n", "[h", function() gs.nav_hunk("first") end, "First Hunk")
+      map("n", "]h", function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "]c", bang = true })
+        else
+          gs.nav_hunk("next")
+        end
+      end, "Next Hunk")
+      map("n", "[h", function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "[c", bang = true })
+        else
+          gs.nav_hunk("prev")
+        end
+      end, "Prev Hunk")
+      -- map("n", "]h", function() gs.nav_hunk("last") end, "Last Hunk")
+      -- map("n", "[h", function() gs.nav_hunk("first") end, "First Hunk")
       map("n", "<leader>gu", gs.undo_stage_hunk, "Undo Stage Hunk")
       map("n", "<leader>gs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
       map("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
