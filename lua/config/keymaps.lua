@@ -83,7 +83,7 @@ pcall(vim.keymap.del, { "n" }, "<leader>L") --LazyVim Changelog
 pcall(vim.keymap.del, { "n" }, "<leader>fT") --Terminal (cwd)
 pcall(vim.keymap.del, { "n" }, "<leader>ft") --Terminal (Root Dir)
 -- pcall(vim.keymap.del, {"n"}, "<c-/>") --Terminal (Root Dir)
-pcall(vim.keymap.del, { "n", "t" }, "<c-_>") --which_key_ignore
+-- pcall(vim.keymap.del, { "n", "t" }, "<c-_>") --which_key_ignore
 -- pcall(vim.keymap.del, {"t"}, "<C-/>") --Hide Terminal
 pcall(vim.keymap.del, { "n" }, "<leader>-") --Split Window Below
 pcall(vim.keymap.del, { "n" }, "<leader>|") --Split Window Right
