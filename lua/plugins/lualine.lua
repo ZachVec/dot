@@ -1,24 +1,34 @@
-local lspserver = {
-  function()
-    local msg = "No Active LSP"
-    local bufnr = vim.fn.bufnr("%")
-    local clients = vim.lsp.get_clients({ bufnr = bufnr })
-    if next(clients) == nil then
-      return msg
+local function get_shiftwidth()
+  return tostring(vim.api.nvim_get_option_value("shiftwidth", {}))
+end
+
+local function set_shiftwidth()
+  local options = { "2", "4", "8" }
+  vim.ui.select(options, {
+    prompt = "Select Indentation:",
+    format_item = function(item)
+      return "Spaces: " .. item
+    end,
+  }, function(choice)
+    if choice then
+      vim.api.nvim_set_option_value("shiftwidth", tonumber(choice), {})
+      vim.api.nvim_set_option_value("tabstop", tonumber(choice), {})
+      vim.api.nvim_set_option_value("expandtab", true, {})
+      vim.api.nvim_set_option_value("softtabstop", tonumber(choice), {})
     end
-    if #clients == 1 then
-      return clients[1].name
-    end
-    return clients[1].name .. "(" .. tostring(#clients) .. ")"
-  end,
-  icon = " :",
-}
+  end)
+end
 
 return {
   "nvim-lualine/lualine.nvim",
   opts = function(_, opts)
     -- return opts
     vim.o.laststatus = vim.g.lualine_laststatus
+    table.insert(opts.sections.lualine_x, {
+      get_shiftwidth,
+      icon = " :",
+      on_click = set_shiftwidth,
+    })
     return {
       options = {
         theme = "auto",
@@ -34,7 +44,7 @@ return {
         lualine_c = {},
         lualine_x = opts.sections.lualine_x,
         lualine_y = opts.sections.lualine_y,
-        lualine_z = { lspserver },
+        lualine_z = { "lsp_status" },
       },
       winbar = {
         lualine_c = {
