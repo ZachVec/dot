@@ -141,3 +141,19 @@ vim.keymap.set("n", "<A-k>", "<cmd>resize +1<cr>", { desc = "Increase Window Hei
 vim.keymap.set("n", "<A-j>", "<cmd>resize -1<cr>", { desc = "Decrease Window Height" })
 vim.keymap.set("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+vim.keymap.set("n", "<leader>;i", function()
+  local options = { "2", "4", "8" }
+  vim.ui.select(options, {
+    prompt = "Select Indentation:",
+    format_item = function(item)
+      return "Spaces: " .. item
+    end,
+  }, function(choice)
+    if choice then
+      vim.api.nvim_set_option_value("shiftwidth", tonumber(choice), {})
+      vim.api.nvim_set_option_value("tabstop", tonumber(choice), {})
+      vim.api.nvim_set_option_value("expandtab", true, {})
+      vim.api.nvim_set_option_value("softtabstop", tonumber(choice), {})
+    end
+  end)
+end, {})
