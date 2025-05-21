@@ -156,4 +156,4 @@ vim.keymap.set("n", "<leader>;i", function()
       vim.api.nvim_set_option_value("softtabstop", tonumber(choice), {})
     end
   end)
-end, {})
+end, { desc = "Indentation" })

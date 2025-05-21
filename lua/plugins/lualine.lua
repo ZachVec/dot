@@ -1,33 +1,13 @@
-local function get_shiftwidth()
-  return tostring(vim.api.nvim_get_option_value("shiftwidth", {}))
-end
-
-local function set_shiftwidth()
-  local options = { "2", "4", "8" }
-  vim.ui.select(options, {
-    prompt = "Select Indentation:",
-    format_item = function(item)
-      return "Spaces: " .. item
-    end,
-  }, function(choice)
-    if choice then
-      vim.api.nvim_set_option_value("shiftwidth", tonumber(choice), {})
-      vim.api.nvim_set_option_value("tabstop", tonumber(choice), {})
-      vim.api.nvim_set_option_value("expandtab", true, {})
-      vim.api.nvim_set_option_value("softtabstop", tonumber(choice), {})
-    end
-  end)
-end
-
 return {
   "nvim-lualine/lualine.nvim",
   opts = function(_, opts)
     -- return opts
     vim.o.laststatus = vim.g.lualine_laststatus
     table.insert(opts.sections.lualine_x, {
-      get_shiftwidth,
-      icon = " :",
-      on_click = set_shiftwidth,
+      function()
+        return tostring(vim.api.nvim_get_option_value("shiftwidth", {}))
+      end,
+      icon = ":",
     })
     return {
       options = {

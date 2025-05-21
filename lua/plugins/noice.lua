@@ -13,4 +13,9 @@ return {
     { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = {"i", "n", "s"}},
   }
   end,
+  opts = {
+    presets = {
+      lsp_doc_border = true,
+    },
+  },
 }

@@ -7,6 +7,12 @@ return {
           min_size = 10,
         },
       },
+      terminal = {
+        win = {
+          position = "float",
+          border = "rounded",
+        },
+      },
     },
   },
 }
