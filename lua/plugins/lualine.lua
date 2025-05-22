@@ -7,7 +7,7 @@ return {
       function()
         return tostring(vim.api.nvim_get_option_value("shiftwidth", {}))
       end,
-      icon = ":",
+      icon = "",
     })
     return {
       options = {

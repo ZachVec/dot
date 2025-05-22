@@ -92,7 +92,7 @@ pcall(vim.keymap.del, { "n" }, "<leader>wm") --Toggle Zoom Mode
 pcall(vim.keymap.del, { "n" }, "<leader>uZ") --Toggle Zoom Mode
 -- pcall(vim.keymap.del, {"n"}, "<leader>uz") --Toggle Zen Mode
 pcall(vim.keymap.del, { "n" }, "<leader><tab>l") --Last Tab
--- pcall(vim.keymap.del, {"n"}, "<leader><tab>o") --Close Other Tabs
+pcall(vim.keymap.del, {"n"}, "<leader><tab>o") --Close Other Tabs
 pcall(vim.keymap.del, { "n" }, "<leader><tab>f") --First Tab
 pcall(vim.keymap.del, { "n" }, "<leader><tab><tab>") --New Tab
 pcall(vim.keymap.del, { "n" }, "<leader><tab>]") --Next Tab
@@ -149,6 +149,7 @@ vim.keymap.set("n", "<leader>;i", function()
       return "Spaces: " .. item
     end,
   }, function(choice)
+    -- /boot/
     if choice then
       vim.api.nvim_set_option_value("shiftwidth", tonumber(choice), {})
       vim.api.nvim_set_option_value("tabstop", tonumber(choice), {})

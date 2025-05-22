@@ -23,7 +23,6 @@ return {
         { "<leader>ff", LazyVim.pick("files"), desc = "Find Files" },
         { "<leader>fg", "<cmd>FzfLua git_files<cr>", desc = "Find Git Files" },
         { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "Recent" },
-        { "<leader>f<tab>", "<cmd>FzfLua tabs<cr>", desc = "Tabs" },
         { "<leader>fs", function() require("fzf-lua").lsp_document_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol" },
         { "<leader>fS", function() require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol (Workspace)" },
 
@@ -33,6 +32,7 @@ return {
         { "<leader>;m", "<cmd>FzfLua marks<cr>", desc = "Bookmarks" },
         { "<leader>;h", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
         { "<leader>;H", "<cmd>FzfLua man_pages<cr>", desc = "Man Pages" },
+        { "<leader>;<tab>", "<cmd>FzfLua tabs<cr>", desc = "Tabs" },
 
         { "<leader>//", "<cmd>FzfLua grep_curbuf<cr>", desc = "Current Buffer" },
         { "<leader>/b", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
