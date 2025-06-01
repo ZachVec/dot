@@ -92,7 +92,7 @@ pcall(vim.keymap.del, { "n" }, "<leader>wm") --Toggle Zoom Mode
 pcall(vim.keymap.del, { "n" }, "<leader>uZ") --Toggle Zoom Mode
 -- pcall(vim.keymap.del, {"n"}, "<leader>uz") --Toggle Zen Mode
 pcall(vim.keymap.del, { "n" }, "<leader><tab>l") --Last Tab
-pcall(vim.keymap.del, {"n"}, "<leader><tab>o") --Close Other Tabs
+pcall(vim.keymap.del, { "n" }, "<leader><tab>o") --Close Other Tabs
 pcall(vim.keymap.del, { "n" }, "<leader><tab>f") --First Tab
 pcall(vim.keymap.del, { "n" }, "<leader><tab><tab>") --New Tab
 pcall(vim.keymap.del, { "n" }, "<leader><tab>]") --Next Tab
@@ -130,9 +130,9 @@ if vim.fn.executable("lazygit") == 1 then
 
   -- git file history
   pcall(vim.keymap.del, "n", "<leader>gf")
-  vim.keymap.set("n", "<leader>gh", function()
-    Snacks.picker.git_log_file()
-  end, { desc = "Git File History" })
+  -- vim.keymap.set("n", "<leader>gh", function()
+  --   Snacks.picker.git_log_file()
+  -- end, { desc = "Git File History" })
   -- pcall(vim.keymap.del, "n", "<leader>gl")
   pcall(vim.keymap.del, "n", "<leader>gL")
 end

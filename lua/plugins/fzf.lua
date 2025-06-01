@@ -15,7 +15,8 @@ return {
       -- stylua: ignore
       return {
         { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
-        { "<leader>gc", "<cmd>FzfLua git_commits<CR>", desc = "Commits" },
+        { "<leader>gc", "<cmd>FzfLua git_commits<CR>", desc = "Commits (Repository)" },
+        { "<leader>gC", "<cmd>FzfLua git_bcommits<CR>", desc = "Commits (File)" },
         { "<leader>gs", "<cmd>FzfLua git_status<CR>", desc = "Status" },
         { "<leader><space>", "<cmd>FzfLua resume<cr>", desc = "Resume" },
 
