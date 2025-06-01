@@ -32,6 +32,13 @@ return {
       -- },
     }
   end,
+  opts = {
+    default_component_configs = {
+      indent = {
+        indent_size = 1,
+      },
+    },
+  },
   -- opts = function (_, opts)
   --   table.insert(opts.sources, "document_symbols")
   -- end
