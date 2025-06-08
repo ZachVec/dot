@@ -19,9 +19,18 @@ return {
         },
       },
       sections = {
-        lualine_a = { "tabs" },
+        lualine_a = {
+          {
+            function()
+              local tab_cnt = vim.fn.tabpagenr("$")
+              local tab_idx = vim.fn.tabpagenr()
+              return tostring(tab_idx) .. "/" .. tostring(tab_cnt)
+            end,
+            icon = "󰓩",
+          },
+        },
         lualine_b = opts.sections.lualine_b,
-        lualine_c = {},
+        lualine_c = { LazyVim.lualine.pretty_path() },
         lualine_x = opts.sections.lualine_x,
         lualine_y = opts.sections.lualine_y,
         lualine_z = { "lsp_status" },
@@ -29,14 +38,14 @@ return {
       winbar = {
         lualine_c = {
           { "filetype", icon_only = true, padding = { left = 1, right = 0 }, separator = "" },
-          { LazyVim.lualine.pretty_path() },
+          { "filename", path = 0 },
           { "aerial", colored = true, dense = false, dense_sep = ".", depth = 5, sep = " ", sep_icon = "" },
         },
       },
       inactive_winbar = {
         lualine_c = {
           { "filetype", icon_only = true, padding = { left = 1, right = 0 }, separator = "" },
-          { LazyVim.lualine.pretty_path() },
+          { "filename", path = 0 },
           { "aerial", colored = true, dense = false, dense_sep = ".", depth = 5, sep = " ", sep_icon = "" },
         },
       },
