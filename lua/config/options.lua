@@ -9,3 +9,4 @@ vim.o.jumpoptions = "stack"
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
+vim.lsp.set_log_level("OFF")

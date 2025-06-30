@@ -30,7 +30,7 @@ return {
           },
         },
         lualine_b = opts.sections.lualine_b,
-        lualine_c = { LazyVim.lualine.pretty_path() },
+        lualine_c = { LazyVim.lualine.pretty_path({ length = 0 }) },
         lualine_x = opts.sections.lualine_x,
         lualine_y = opts.sections.lualine_y,
         lualine_z = { "lsp_status" },

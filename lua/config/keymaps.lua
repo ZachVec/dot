@@ -72,7 +72,6 @@ pcall(vim.keymap.del, { "n" }, "<leader>dpp") --Toggle Profiler
 pcall(vim.keymap.del, { "n" }, "<leader>dph") --Toggle Profiler Highlights
 -- pcall(vim.keymap.del, {"n"}, "<leader>uh") --Toggle Inlay Hints
 -- pcall(vim.keymap.del, {"n"}, "<leader>gb") --Git Blame Line
-pcall(vim.keymap.del, { "n", "x" }, "<leader>gB") --Git Browse (open)
 
 pcall(vim.keymap.del, { "n", "x" }, "<leader>gB") --Git Browse (open)
 pcall(vim.keymap.del, { "n", "x" }, "<leader>gY") --Git Browse (copy)
@@ -119,6 +118,7 @@ if vim.fn.executable("lazygit") == 1 then
   -- lazygit terminal
   pcall(vim.keymap.del, "n", "<leader>gg")
   vim.keymap.set("n", "<leader>gt", function()
+    ---@diagnostic disable-next-line: missing-fields
     Snacks.lazygit({ cwd = LazyVim.root.git() })
   end, { desc = "Lazygit" })
 
@@ -141,6 +141,7 @@ vim.keymap.set("n", "<A-k>", "<cmd>resize +1<cr>", { desc = "Increase Window Hei
 vim.keymap.set("n", "<A-j>", "<cmd>resize -1<cr>", { desc = "Decrease Window Height" })
 vim.keymap.set("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+vim.keymap.set("n", "<A-m>", "<C-w>_<C-w>|", { desc = "Maximize Current window"})
 vim.keymap.set("n", "<leader>;i", function()
   local options = { "2", "4", "8" }
   vim.ui.select(options, {
