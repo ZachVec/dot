@@ -13,6 +13,9 @@ return {
           preselect = true,
         },
       },
+      menu = { border = "rounded" },
+      documentation = { window = { border = "rounded" } },
     },
+    signature = { window = { border = "single" } },
   },
 }
