@@ -1,6 +1,7 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   keys = function()
+    -- stylua: ignore
     return {
       {
         "<leader>ef",
@@ -23,23 +24,32 @@ return {
         end,
         desc = "Buffer Explorer",
       },
-      -- {
-      --   "<leader>es",
-      --   function()
-      --     require("neo-tree.command").execute({ source = "document_symbols", toggle = true })
-      --   end,
-      --   desc = "Symbol Explorer",
-      -- },
+      {
+        "<leader>es",
+        function()
+          require("neo-tree.command").execute({ source = "document_symbols", toggle = true })
+        end,
+        desc = "Symbol Explorer",
+      },
     }
   end,
-  opts = {
-    default_component_configs = {
-      indent = {
-        indent_size = 1,
+  opts = function(_, opts)
+    table.insert(opts.sources, "document_symbols")
+    opts = vim.tbl_deep_extend("force", opts, {
+      default_component_configs = {
+        indent = {
+          indent_size = 1,
+        },
       },
-    },
-  },
-  -- opts = function (_, opts)
-  --   table.insert(opts.sources, "document_symbols")
-  -- end
+      source_selector = {
+        sources = {
+          { source = "filesystem" },
+          { source = "document_symbols" },
+        },
+        winbar = true,
+        statusline = false,
+      },
+    })
+    return opts
+  end,
 }
