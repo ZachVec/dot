@@ -20,19 +20,4 @@ return {
       show_prompt = false,
     },
   },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = function(_, opts)
-      if LazyVim.has("window-picker") then
-        opts = vim.tbl_deep_extend("force", opts, {
-          window = {
-            mappings = {
-              ["<cr>"] = "open_with_window_picker",
-            },
-          },
-        })
-      end
-      return opts
-    end,
-  },
 }
