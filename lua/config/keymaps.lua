@@ -112,8 +112,7 @@ vim.keymap.set("n", "gH", "<cmd>tabfirst<cr>", { desc = "First Tab" })
 vim.keymap.set("n", "gL", "<cmd>tablast<cr>", { desc = "Last Tab" })
 vim.keymap.set("n", "gh", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 vim.keymap.set("n", "gl", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-vim.keymap.set("n", "Y", '"+yy', { desc = "Copy to clipboard" })
-vim.keymap.set("v", "Y", '"+y', { desc = "Copy to clipboard" })
+vim.keymap.set({ "n", "v" }, "Y", '"+y', { desc = "Copy to clipboard" })
 
 -- Lazygit
 if vim.fn.executable("lazygit") == 1 then
@@ -139,12 +138,14 @@ if vim.fn.executable("lazygit") == 1 then
   pcall(vim.keymap.del, "n", "<leader>gL")
 end
 
+-- stylua: ignore start
 vim.keymap.set("n", "<A-k>", "<cmd>resize +1<cr>", { desc = "Increase Window Height" })
 vim.keymap.set("n", "<A-j>", "<cmd>resize -1<cr>", { desc = "Decrease Window Height" })
 vim.keymap.set("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 vim.keymap.set("n", "<A-->", "<C-w>_<C-w>|", { desc = "Maximize Current window" })
 vim.keymap.set("n", "<A-=>", "<C-w>=", { desc = "Equally high and wide" })
+-- stylua: ignore end
 
 vim.keymap.set("n", "<leader>;i", function()
   local options = { "2", "4", "8" }
