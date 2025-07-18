@@ -154,7 +154,6 @@ vim.keymap.set("n", "<leader>;i", function()
       return "Spaces: " .. item
     end,
   }, function(choice)
-    -- /boot/
     if choice then
       vim.api.nvim_set_option_value("shiftwidth", tonumber(choice), {})
       vim.api.nvim_set_option_value("tabstop", tonumber(choice), {})
