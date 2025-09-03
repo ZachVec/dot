@@ -1,6 +1,14 @@
+local function toggle_term()
+  --- @type snacks.win.Config
+  local win = { position = "right", width = 0.5 }
+  --- @type snacks.terminal.Opts
+  local opts = { cwd = LazyVim.root(), env = { _SNACK_TERM_POS = "right" }, win = win }
+  Snacks.terminal.toggle(nil, opts)
+end
+
 local dashboard = {
   preset = {
-    --- stylua: ignore
+    -- stylua: ignore
     keys = {
       { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
       { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
@@ -24,6 +32,10 @@ local dashboard = {
 return {
   {
     "folke/snacks.nvim",
+    keys = {
+      { "<M-/>", toggle_term, desc = "Terminal on right", mode = { "n", "t" } },
+      { "<M-_>", toggle_term, desc = "Terminal on right", mode = { "n", "t" } },
+    },
     opts = {
       dim = {
         scope = {
@@ -45,6 +57,10 @@ return {
           enabled = true,
         },
       },
+      -- profiler = {},
     },
+    -- keys = {
+    --   { "<leader>ps", function() Snacks.profiler.scratch() end, desc = "Profiler Scratch Bufer" },
+    -- },
   },
 }

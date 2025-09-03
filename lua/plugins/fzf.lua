@@ -20,6 +20,7 @@ return {
         { "<leader>gs", "<cmd>FzfLua git_status<CR>", desc = "Status" },
         { "<leader><space>", "<cmd>FzfLua resume<cr>", desc = "Resume" },
 
+        -- find: with preview
         { "<leader>fb", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
         { "<leader>ff", LazyVim.pick("files"), desc = "Find Files" },
         { "<leader>fg", "<cmd>FzfLua git_files<cr>", desc = "Find Git Files" },
@@ -27,14 +28,16 @@ return {
         { "<leader>fs", function() require("fzf-lua").lsp_document_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol" },
         { "<leader>fS", function() require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol (Workspace)" },
         { "<leader>f<tab>", "<cmd>FzfLua tabs<cr>", desc = "Tabs" },
+        { "<leader>fm", "<cmd>FzfLua marks<cr>", desc = "Bookmarks" },
+        { "<leader>fh", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
+        { "<leader>fH", "<cmd>FzfLua man_pages<cr>", desc = "Man Pages" },
 
+        -- list: without preview
         { '<leader>;"', "<cmd>FzfLua registers<cr>", desc = "Registers" },
         { "<leader>;k", "<cmd>FzfLua keymaps<cr>", desc = "KeyMaps" },
         { "<leader>;c", LazyVim.pick("colorschemes"), desc = "Colorscheme" },
-        { "<leader>;m", "<cmd>FzfLua marks<cr>", desc = "Bookmarks" },
-        { "<leader>;h", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
-        { "<leader>;H", "<cmd>FzfLua man_pages<cr>", desc = "Man Pages" },
 
+        -- grep
         { "<leader>//", "<cmd>FzfLua grep_curbuf<cr>", desc = "Current Buffer" },
         { "<leader>/b", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
         { "<leader>/f", LazyVim.pick("live_grep"), desc = "Grep Files" },

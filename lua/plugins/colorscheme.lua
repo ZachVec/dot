@@ -4,6 +4,7 @@ return {
     opts = {
       transparent_mode = true,
     },
+    lazy = true,
   },
 
   {
@@ -14,6 +15,7 @@ return {
         sidebars = "transparent",
         floats = "transparent",
       },
+      priority = 1000,
       -- fix lualine broken on snacks_dashboard, check these out.
       -- https://github.com/nvim-lualine/lualine.nvim/issues/1401
       -- https://github.com/folke/tokyonight.nvim/issues/703
