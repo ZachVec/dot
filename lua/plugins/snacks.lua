@@ -1,6 +1,6 @@
 local function toggle_term()
   --- @type snacks.win.Config
-  local win = { position = "right", width = 0.5 }
+  local win = { position = "right", width = 0.5, relative = "editor" }
   --- @type snacks.terminal.Opts
   local opts = { cwd = LazyVim.root(), env = { _SNACK_TERM_POS = "right" }, win = win }
   Snacks.terminal.toggle(nil, opts)
