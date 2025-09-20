@@ -148,18 +148,17 @@ vim.keymap.set("n", "<A-=>", "<C-w>=", { desc = "Equally high and wide" })
 -- stylua: ignore end
 
 vim.keymap.set("n", "<leader>;i", function()
-  local options = { "2", "4", "8" }
+  local options = { 1, 2, 4, 6, 8 }
   vim.ui.select(options, {
-    prompt = "Select Indentation:",
+    prompt = "Select an indentation: ",
     format_item = function(item)
-      return "Spaces: " .. item
+      return (" : %d"):format(item)
     end,
   }, function(choice)
     if choice then
-      vim.api.nvim_set_option_value("shiftwidth", tonumber(choice), {})
-      vim.api.nvim_set_option_value("tabstop", tonumber(choice), {})
-      vim.api.nvim_set_option_value("expandtab", true, {})
-      vim.api.nvim_set_option_value("softtabstop", tonumber(choice), {})
+      vim.api.nvim_set_option_value("shiftwidth", choice, {})
+      vim.api.nvim_set_option_value("tabstop", choice, {})
+      vim.api.nvim_set_option_value("softtabstop", choice, {})
     end
   end)
 end, { desc = "Indentation" })
