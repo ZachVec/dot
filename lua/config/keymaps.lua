@@ -148,7 +148,7 @@ vim.keymap.set("n", "<A-=>", "<C-w>=", { desc = "Equally high and wide" })
 -- stylua: ignore end
 
 vim.keymap.set("n", "<leader>;i", function()
-  local options = { 1, 2, 4, 6, 8 }
+  local options = { 2, 4, 8 }
   vim.ui.select(options, {
     prompt = "Select an indentation: ",
     format_item = function(item)
