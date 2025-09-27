@@ -34,57 +34,73 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
-      -- return opts
+      local lualine_require = require("lualine_require")
+      lualine_require.require = require
       vim.o.laststatus = vim.g.lualine_laststatus
-      table.insert(opts.sections.lualine_x, {
-        function()
-          return tostring(vim.api.nvim_get_option_value("shiftwidth", {}))
-        end,
-        icon = "",
-      })
-      return {
-        options = {
-          theme = "auto",
-          globalstatus = vim.o.laststatus == 3,
-          disabled_filetypes = {
-            winbar = { "snacks_dashboard", "neo-tree", "aerial" },
-            statusline = { "snacks_dashboard" },
-          },
-        },
-        sections = {
-          lualine_a = {
-            {
-              function()
-                local tab_cnt = vim.fn.tabpagenr("$")
-                local tab_idx = vim.fn.tabpagenr()
-                return tostring(tab_idx) .. "/" .. tostring(tab_cnt)
-              end,
-              icon = "󰓩",
-            },
-          },
-          lualine_b = opts.sections.lualine_b,
-          lualine_c = { LazyVim.lualine.pretty_path({ length = 0 }) },
-          lualine_x = opts.sections.lualine_x,
-          lualine_y = opts.sections.lualine_y,
-          lualine_z = { "lsp_status" },
-        },
-        winbar = {
-          -- stylua: ignore
-        lualine_c = {
-          { "filetype", icon_only = true, padding = { left = 1, right = 0 }, separator = "" },
-          { "filename", path = 0 },
-          { "aerial", colored = true, dense = false, dense_sep = ".", depth = 5, sep = " ", sep_icon = "" },
-        },
-        },
-        inactive_winbar = {
-          -- stylua: ignore
-        lualine_c = {
-          { "filetype", icon_only = true, padding = { left = 1, right = 0 }, separator = "" },
-          { "filename", path = 0 },
-          { "aerial", colored = true, dense = false, dense_sep = ".", depth = 5, sep = " ", sep_icon = "" },
-        },
+
+      opts.options = {
+        theme = "auto",
+        globalstatus = vim.o.laststatus == 3,
+        disabled_filetypes = {
+          winbar = { "snacks_dashboard", "neo-tree", "aerial" },
+          statusline = { "snacks_dashboard" },
         },
       }
+
+      -- stylua: ignore
+      opts.sections.lualine_a = {
+        { function() return ("%d/%d"):format(vim.fn.tabpagenr(), vim.fn.tabpagenr("$")) end, icon = "󰓩", },
+      }
+
+      -- stylua: ignore
+      opts.sections.lualine_b = {
+        { "branch" },
+      }
+
+      -- stylua: ignore
+      opts.sections.lualine_c = {
+        { LazyVim.lualine.pretty_path({ length = 0 }) },
+      }
+
+      -- stylua: ignore
+      table.insert(opts.sections.lualine_x,
+        { function() return tostring(vim.api.nvim_get_option_value("shiftwidth", {})) end, icon = "", }
+      )
+
+      -- stylua: ignore
+      opts.sections.lualine_y = {
+        { "progress", separator = " ", padding = { left = 1, right = 0 } },
+        { "location", padding = { left = 0, right = 1 } },
+      }
+
+      -- stylua: ignore
+      opts.sections.lualine_z = {
+        { "lsp_status" },
+      }
+
+      local trouble = require("trouble")
+      local symbols = trouble.statusline({
+        mode = "symbols",
+        groups = {},
+        title = false,
+        filter = { range = true },
+        format = "{kind_icon}{symbol.name:Normal}",
+        hl_group = "lualine_c_normal",
+      })
+
+      opts.winbar = {
+        -- stylua: ignore
+        lualine_c = {
+          { "filetype", icon_only = true, padding = { left = 1, right = 0 }, separator = "" },
+          { "filename", path = 0 },
+          { symbols and symbols.get, cond = function () return symbols.has() end }
+        },
+      }
+
+      opts.inactive_winbar = opts.winbar
+
+      opts.extensions = { "neo-tree", "lazy", "fzf" }
+      return opts
     end,
   },
   {
