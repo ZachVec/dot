@@ -30,134 +30,108 @@ return {
   },
 
   {
-    "nvim-neo-tree/neo-tree.nvim",
+    "folke/snacks.nvim",
     -- stylua: ignore
     keys = {
-      { "<leader>ef", function() require("neo-tree.command").execute({ source = "filesystem", toggle = true, dir = LazyVim.root() }) end, desc = "Explorer NeoTree (Root Dir)" },
-      { "<leader>eg", function() require("neo-tree.command").execute({ source = "git_status", toggle = true, }) end, desc = "Git Explorer", },
-      { "<leader>eb", function() require("neo-tree.command").execute({ source = "buffers", toggle = true, }) end, desc = "Buffer Explorer", },
-      { "<leader>es", function() require("neo-tree.command").execute({ source = "document_symbols", toggle = true, }) end, desc = "Symbol Explorer", },
-      { "<leader>e", false },
-      { "<leader>E", false },
-      { "<leader>be", false },
       { "<leader>fe", false },
       { "<leader>fE", false },
-      { "<leader>gE", false },
-    },
-    opts = function(_, opts)
-      table.insert(opts.sources, "document_symbols")
-      opts = vim.tbl_deep_extend("force", opts, {
-        window = {
-          mappings = {
-            ["."] = "noop",
-            ["b"] = "noop",
-            ["f"] = "noop",
-            ["h"] = "noop",
-            ["i"] = "noop",
-            ["l"] = "noop",
-            ["o"] = "noop",
-            ["z"] = "noop",
-            ["O"] = "noop",
-            ["C"] = "noop",
-            ["oc"] = "noop",
-            ["od"] = "noop",
-            ["og"] = "noop",
-            ["om"] = "noop",
-            ["on"] = "noop",
-            ["os"] = "noop",
-            ["ot"] = "noop",
-            ["<bs>"] = "noop",
-            ["e"] = "toggle_node",
-            ["="] = "toggle_auto_expand_width",
-            ["zC"] = "close_all_nodes",
-            ["zc"] = "close_node",
-            ["zR"] = "expand_all_nodes",
-            ["zo"] = "expand_all_subnodes",
-          },
-        },
-        filesystem = {
-          window = {
-            mappings = {
-              ["#"] = "noop",
-              ["A"] = "noop",
-              ["D"] = "noop",
-              ["]g"] = "noop",
-              ["[g"] = "noop",
-              ["<C-x>"] = "noop",
-            },
-          },
-        },
-        buffers = {
-          window = {
-            mappings = {
-              ["bd"] = "noop",
-            },
-          },
-        },
-        git_status = {
-          window = {
-            -- stylua: ignore
-            mappings = {
-              ["c"] = "noop",
-              ["d"] = "noop",
-              ["m"] = "noop",
-              ["p"] = "noop",
-              ["s"] = "noop",
-              ["t"] = "noop",
-              ["w"] = "noop",
-              ["x"] = "noop",
-              ["y"] = "noop",
-              ["S"] = "noop",
-              ["ga"] = "noop", -- stage
-              ["gc"] = "noop", -- commit
-              ["gg"] = "noop", -- commit and push
-              ["gp"] = "noop", -- push
-              ["gr"] = "noop", -- revert
-              ["gu"] = "noop", -- unstage
-              ["gU"] = "noop", -- Undo last commit
-              ["a"] = { function(state) local gcmd = require("neo-tree.sources.git_status.commands") gcmd.git_add_all(state) end, desc = "git add file" },
-              ["r"] = { function(state) local gcmd = require("neo-tree.sources.git_status.commands") gcmd.git_revert_file(state) end, desc = "git restore file" },
-              ["u"] = { function(state) local gcmd = require("neo-tree.sources.git_status.commands") gcmd.git_unstage_file(state) end, desc = "git unstage file" },
-            },
-          },
-        },
-        default_component_configs = {
-          indent = {
-            indent_size = 1,
-          },
-        },
-        source_selector = {
-          sources = {
-            { source = "filesystem" },
-            { source = "document_symbols" },
-          },
-          winbar = true,
-          statusline = false,
-        },
-      })
-      return opts
-    end,
-  },
-
-  {
-    "s1n7ax/nvim-window-picker",
-    name = "window-picker",
-    event = "VeryLazy",
-    version = "2.*",
-    dependencies = {
-      "nvim-neo-tree/neo-tree.nvim",
+      { "<leader>e", false },
+      { "<leader>E", false },
+      { "<leader>ef", function() Snacks.explorer({ cwd = LazyVim.root() }) end, },
     },
     opts = {
-      hint = "floating-big-letter",
-      filter_rules = {
-        include_current_win = false,
-        autoselect_one = true,
-        bo = {
-          filetype = { "neo-tree", "neo-tree-popup", "notify", "snacks_notif" },
-          buftype = { "terminal", "quickfix" },
+      picker = {
+        layout = {
+          preset = "ivy",
+        },
+        sources = {
+          --- @type snacks.picker.explorer.Config
+          explorer = {
+            focus = "input",
+            layout = { preset = "ivy", preview = true },
+            actions = {
+              toggle_dir = function(picker, item)
+                if item.dir then
+                  picker:action("confirm")
+                end
+              end,
+              custom_confirm = function(picker, item)
+                local filtered = picker:filter().pattern:len() > 0
+
+                if not filtered then
+                  if item.dir then
+                    picker:action("confirm")
+                  else
+                    picker:action({ "confirm", "close" })
+                  end
+                  return
+                end
+
+                if item.dir then
+                  return
+                end
+
+                picker:action("confirm")
+                vim.defer_fn(function()
+                  picker:action({ "confirm", "close" })
+                end, 0)
+              end,
+            },
+            win = {
+              input = {
+                keys = {
+                  ["<C-C>"] = false,
+                  ["<C-W>"] = false,
+                  ["<C-N>"] = false,
+                  ["<C-P>"] = false,
+                  ["<C-Q>"] = false,
+                  ["<C-G>"] = false,
+                  ["<C-A>"] = false,
+                  ["<C-UP>"] = false,
+                  ["<C-DOWN>"] = false,
+                  ["<C-R>#"] = false,
+                  ["<C-R>%"] = false,
+                  ["<C-R><C-A>"] = false,
+                  ["<C-R><C-W>"] = false,
+                  ["<C-R><C-F>"] = false,
+                  ["<C-R><C-P>"] = false,
+                  ["<C-R><C-L>"] = false,
+                  ["<C-W>H"] = false,
+                  ["<C-W>J"] = false,
+                  ["<C-W>K"] = false,
+                  ["<C-W>L"] = false,
+                  ["<M-d>"] = false,
+                  ["<M-h>"] = false,
+                  ["<M-i>"] = false,
+                  ["<M-w>"] = false,
+                  ["<M-f>"] = false,
+                  ["<M-m>"] = false,
+                  ["<M-p>"] = false,
+                  ["<S-CR>"] = false,
+                  ["<UP>"] = false,
+                  ["<DOWN>"] = false,
+                  ["H"] = "toggle_hidden",
+                  ["I"] = "toggle_ignored",
+                  ["F"] = "toggle_follow",
+                  ["M"] = "toggle_maximize",
+                  ["P"] = "toggle_preview",
+                  ["w"] = { { "pick_win", "jump", "close" }, desc = "window" },
+                  ["e"] = "toggle_dir",
+                  [">"] = "explorer_focus",
+                  ["<"] = "explorer_up",
+                  ["u"] = "explorer_update",
+                  ["r"] = "explorer_rename",
+                  ["a"] = "explorer_add",
+                  ["d"] = { "explorer_del", mode = "n" },
+                  ["y"] = { "explorer_yank", mode = { "n", "x" } },
+                  ["p"] = "explorer_paste",
+                  ["<CR>"] = { "custom_confirm", mode = { "i", "n" } },
+                },
+              },
+            },
+          },
         },
       },
-      show_prompt = false,
     },
   },
 
