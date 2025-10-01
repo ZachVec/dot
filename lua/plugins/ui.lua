@@ -1,13 +1,3 @@
-local function toggle_term()
-  local tabid = tostring(vim.api.nvim_get_current_tabpage())
-  --- @type table<string, string>
-  local env = { _SNACK_TERM_POS = "right", _TAB_ID = tabid }
-  --- @type snacks.win.Config
-  local win = { position = "right", width = 0.5, relative = "editor" }
-  --- @type snacks.terminal.Opts
-  local opts = { cwd = LazyVim.root(), env = env, win = win }
-  Snacks.terminal.toggle(nil, opts)
-end
 local dashboard = {
   preset = {
     -- stylua: ignore
@@ -38,46 +28,6 @@ return {
       lualine_require.require = require
       vim.o.laststatus = vim.g.lualine_laststatus
 
-      opts.options = {
-        theme = "auto",
-        globalstatus = vim.o.laststatus == 3,
-        disabled_filetypes = {
-          winbar = { "snacks_dashboard", "neo-tree", "aerial" },
-          statusline = { "snacks_dashboard" },
-        },
-      }
-
-      -- stylua: ignore
-      opts.sections.lualine_a = {
-        { function() return ("%d/%d"):format(vim.fn.tabpagenr(), vim.fn.tabpagenr("$")) end, icon = "󰓩", },
-      }
-
-      -- stylua: ignore
-      opts.sections.lualine_b = {
-        { "branch" },
-      }
-
-      -- stylua: ignore
-      opts.sections.lualine_c = {
-        { LazyVim.lualine.pretty_path({ length = 0 }) },
-      }
-
-      -- stylua: ignore
-      table.insert(opts.sections.lualine_x,
-        { function() return tostring(vim.api.nvim_get_option_value("shiftwidth", {})) end, icon = "", }
-      )
-
-      -- stylua: ignore
-      opts.sections.lualine_y = {
-        { "progress", separator = " ", padding = { left = 1, right = 0 } },
-        { "location", padding = { left = 0, right = 1 } },
-      }
-
-      -- stylua: ignore
-      opts.sections.lualine_z = {
-        { "lsp_status" },
-      }
-
       local trouble = require("trouble")
       local symbols = trouble.statusline({
         mode = "symbols",
@@ -88,79 +38,80 @@ return {
         hl_group = "lualine_c_normal",
       })
 
-      opts.winbar = {
-        -- stylua: ignore
-        lualine_c = {
-          { "filetype", icon_only = true, padding = { left = 1, right = 0 }, separator = "" },
-          { "filename", path = 0 },
-          { symbols and symbols.get, cond = function () return symbols.has() end }
+      opts.options = {
+        theme = "auto",
+        globalstatus = vim.o.laststatus == 3,
+        disabled_filetypes = {
+          winbar = { "snacks_dashboard", "neo-tree" },
+          statusline = { "snacks_dashboard" },
         },
       }
 
+      -- stylua: ignore start
+      opts.winbar = {
+        lualine_c = {
+          { "filetype", icon_only = true, padding = { left = 1, right = 0 }, separator = "" },
+          { LazyVim.lualine.pretty_path({ length = 0 }) },
+        }
+      }
+
       opts.inactive_winbar = opts.winbar
+
+      opts.sections = {
+        lualine_a = { { function() return ("%d/%d"):format(vim.fn.tabpagenr(), vim.fn.tabpagenr("$")) end, icon = "󰓩" } },
+        lualine_b = { { "branch" } },
+        lualine_c = {
+          { "filename", path = 0 },
+          { symbols and symbols.get, cond = function() return symbols.has() end },
+        },
+        lualine_x = vim.list_extend(opts.sections.lualine_x, {
+          { function() return tostring(vim.api.nvim_get_option_value("shiftwidth", {})) end, icon = "" }
+        }),
+        lualine_y = {
+          { "progress", separator = " ", padding = { left = 1, right = 0 } },
+          { "location", padding = { left = 0, right = 1 } },
+        },
+        lualine_z = { { "lsp_status" } },
+      }
+      -- stylua: ignore end
 
       opts.extensions = { "neo-tree", "lazy", "fzf" }
       return opts
     end,
   },
+
   {
     "folke/noice.nvim",
-    keys = function()
-      -- stylua: ignore
-      return {
-        { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = { "i", "n", "s" } },
-        { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = { "i", "n", "s" } },
-      }
-    end,
     opts = {
       presets = {
         lsp_doc_border = true,
       },
     },
   },
+
   {
-    {
-      "folke/snacks.nvim",
-      keys = {
-        {
-          "<M-/>",
-          toggle_term,
-          desc = "Terminal on right",
-          mode = { "n", "t" },
-        },
-        {
-          "<M-_>",
-          toggle_term,
-          desc = "Terminal on right",
-          mode = { "n", "t" },
+    "folke/snacks.nvim",
+    opts = {
+      dim = {
+        scope = {
+          min_size = 10,
         },
       },
-      opts = {
-        dim = {
-          scope = {
-            min_size = 10,
-          },
+      terminal = {
+        win = {
+          position = "float",
+          border = "rounded",
         },
-        terminal = {
-          win = {
-            position = "float",
-            border = "rounded",
-          },
-        },
-        dashboard = dashboard,
+      },
+      dashboard = dashboard,
+      indent = {
         indent = {
-          indent = {
-            only_scope = true,
-          },
-          chunk = {
-            enabled = true,
-          },
+          only_scope = true,
         },
-        -- profiler = {},
+        chunk = {
+          enabled = true,
+        },
       },
-      -- keys = {
-      --   { "<leader>ps", function() Snacks.profiler.scratch() end, desc = "Profiler Scratch Bufer" },
-      -- },
     },
   },
 }

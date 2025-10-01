@@ -26,9 +26,6 @@ return {
 
   {
     "mason-org/mason.nvim",
-    keys = {
-      { "<leader>cm", false },
-    },
     opts = function()
       return {
         ensure_installed = {}, --- NOTE: manually installed binaries imcompatible with older glibc.

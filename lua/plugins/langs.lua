@@ -1,5 +1,12 @@
 return {
   {
+    "linux-cultist/venv-selector.nvim",
+    enabled = true,
+    branch = "main",
+    -- stylua: ignore
+  },
+
+  {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
       render_modes = { "n", "c", "t", "i" },
