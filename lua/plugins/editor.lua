@@ -137,6 +137,9 @@ return {
                   -- ["j"] = "list_down",
                   -- ["k"] = "list_up",
                   -- ["q"] = "close",
+                  -- added
+                  ["J"] = "history_forward",
+                  ["K"] = "history_back",
                 },
               },
               list = {
@@ -177,7 +180,7 @@ return {
                   -- ["?"] = "toggle_help_list",
                   -- ["G"] = "list_bottom",
                   -- ["gg"] = "list_top",
-                  ["i"] = "inspect",
+                  ["D"] = "inspect",
                   -- ["j"] = "list_down",
                   -- ["k"] = "list_up",
                   -- ["q"] = "close",
