@@ -3,7 +3,7 @@
 -- Add any additional options here
 vim.g.autoformat = false
 vim.g.snacks_animate = false
-vim.g.trouble_lualine = true
+vim.g.trouble_lualine = false
 vim.opt.showtabline = 0
 vim.opt.expandtab = true
 

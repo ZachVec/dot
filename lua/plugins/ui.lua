@@ -6,22 +6,12 @@ return {
       lualine_require.require = require
       vim.o.laststatus = vim.g.lualine_laststatus
 
-      local trouble = require("trouble")
-      local symbols = trouble.statusline({
-        mode = "symbols",
-        groups = {},
-        title = false,
-        filter = { range = true },
-        format = "{kind_icon}{symbol.name:Normal}",
-        hl_group = "lualine_c_normal",
-      })
-
       opts.options = {
         theme = "auto",
         globalstatus = vim.o.laststatus == 3,
         disabled_filetypes = {
-          winbar = { "snacks_dashboard", "neo-tree" },
-          statusline = { "snacks_dashboard" },
+          winbar = { "snacks_dashboard", "neo-tree", "aerial" },
+          statusline = { "snacks_dashboard", "aerial" },
         },
       }
 
@@ -40,7 +30,7 @@ return {
         lualine_b = { { "branch" } },
         lualine_c = {
           { "filename", path = 0 },
-          { symbols and symbols.get, cond = function() return symbols.has() end },
+          { "aerial", colored = true, dense = false, dense_sep = ".", depth = 5, sep = " ", sep_icon = "" },
         },
         lualine_x = vim.list_extend(opts.sections.lualine_x, {
           { function() return tostring(vim.api.nvim_get_option_value("shiftwidth", {})) end, icon = "" }

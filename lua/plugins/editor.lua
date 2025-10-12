@@ -176,4 +176,13 @@ return {
       }
     end,
   },
+
+  {
+    "stevearc/aerial.nvim",
+    opts = {
+      layout = {
+        width = 0.2,
+      },
+    },
+  },
 }

@@ -134,4 +134,13 @@ return {
       }
     end,
   },
+
+  {
+    "stevearc/aerial.nvim",
+    keys = function()
+      return {
+        { "<leader>es", "<cmd>AerialToggle<cr>", desc = "Document symbols" },
+      }
+    end,
+  },
 }
