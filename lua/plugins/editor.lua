@@ -1,9 +1,7 @@
 --- @type LazyPluginSpec[]
 return {
-
   {
     "folke/snacks.nvim",
-    -- stylua: ignore
     opts = {
       picker = {
         layout = {
@@ -12,85 +10,139 @@ return {
         sources = {
           --- @type snacks.picker.explorer.Config
           explorer = {
-            focus = "input",
-            layout = { preset = "ivy", preview = true },
-            actions = {
-              toggle_dir = function(picker, item)
-                if item.dir then
-                  picker:action("confirm")
-                end
-              end,
-              custom_confirm = function(picker, item)
-                local filtered = picker:filter().pattern:len() > 0
-
-                if not filtered then
-                  if item.dir then
-                    picker:action("confirm")
-                  else
-                    picker:action({ "confirm", "close" })
-                  end
-                  return
-                end
-
-                if item.dir then
-                  return
-                end
-
-                picker:action("confirm")
-                vim.defer_fn(function()
-                  picker:action({ "confirm", "close" })
-                end, 0)
-              end,
-            },
+            -- layout = { preset = "ivy", preview = true },
             win = {
               input = {
                 keys = {
-                  ["<C-C>"] = false,
-                  ["<C-W>"] = false,
-                  ["<C-N>"] = false,
-                  ["<C-P>"] = false,
-                  ["<C-Q>"] = false,
-                  ["<C-G>"] = false,
-                  ["<C-A>"] = false,
-                  ["<C-UP>"] = false,
-                  ["<C-DOWN>"] = false,
-                  ["<C-R>#"] = false,
-                  ["<C-R>%"] = false,
-                  ["<C-R><C-A>"] = false,
-                  ["<C-R><C-W>"] = false,
-                  ["<C-R><C-F>"] = false,
-                  ["<C-R><C-P>"] = false,
-                  ["<C-R><C-L>"] = false,
-                  ["<C-W>H"] = false,
-                  ["<C-W>J"] = false,
-                  ["<C-W>K"] = false,
-                  ["<C-W>L"] = false,
-                  ["<M-d>"] = false,
-                  ["<M-h>"] = false,
-                  ["<M-i>"] = false,
-                  ["<M-w>"] = false,
-                  ["<M-f>"] = false,
-                  ["<M-m>"] = false,
-                  ["<M-p>"] = false,
+                  ["/"] = false,
+                  ["<C-Down>"] = false,
+                  ["<C-Up>"] = false,
+                  ["<C-c>"] = false,
+                  ["<C-w>"] = false,
+                  -- ["<CR>"] = { "confirm", mode = { "n", "i" } },
+                  ["<Down>"] = false,
+                  ["<Esc>"] = "focus_list",
                   ["<S-CR>"] = false,
-                  ["<UP>"] = false,
-                  ["<DOWN>"] = false,
-                  ["H"] = "toggle_hidden",
-                  ["I"] = "toggle_ignored",
-                  ["F"] = "toggle_follow",
-                  ["M"] = "toggle_maximize",
-                  ["P"] = "toggle_preview",
-                  ["w"] = { { "pick_win", "jump", "close" }, desc = "window" },
-                  ["e"] = "toggle_dir",
-                  [">"] = "explorer_focus",
-                  ["<"] = "explorer_up",
-                  ["u"] = "explorer_update",
-                  ["r"] = "explorer_rename",
-                  ["a"] = "explorer_add",
-                  ["d"] = { "explorer_del", mode = "n" },
-                  ["y"] = { "explorer_yank", mode = { "n", "x" } },
-                  ["p"] = "explorer_paste",
-                  ["<CR>"] = { "custom_confirm", mode = { "i", "n" } },
+                  ["<S-Tab>"] = false,
+                  -- ["<Tab>"] = { "select_and_next", mode = { "i", "n" } },
+                  ["<Up>"] = false,
+                  ["<a-d>"] = false,
+                  ["<a-f>"] = false,
+                  ["<a-h>"] = false,
+                  ["<a-i>"] = false,
+                  ["<a-m>"] = false,
+                  ["<a-p>"] = false,
+                  ["<a-w>"] = false,
+                  ["<c-a>"] = false,
+                  -- ["<c-b>"] = { "preview_scroll_up", mode = { "i", "n" } },
+                  -- ["<c-f>"] = { "preview_scroll_down", mode = { "i", "n" } },
+                  -- ["<c-u>"] = { "list_scroll_up", mode = { "i", "n" } },
+                  -- ["<c-d>"] = { "list_scroll_down", mode = { "i", "n" } },
+                  ["<c-g>"] = false,
+                  -- ["<c-j>"] = { "list_down", mode = { "i", "n" } },
+                  -- ["<c-k>"] = { "list_up", mode = { "i", "n" } },
+                  ["<c-n>"] = false,
+                  ["<c-p>"] = false,
+                  ["<c-q>"] = false,
+                  -- ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
+                  -- ["<c-t>"] = { "tab", mode = { "n", "i" } },
+                  -- ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
+                  ["<c-r>#"] = false,
+                  ["<c-r>%"] = false,
+                  ["<c-r><c-a>"] = false,
+                  ["<c-r><c-f>"] = false,
+                  ["<c-r><c-l>"] = false,
+                  ["<c-r><c-p>"] = false,
+                  ["<c-r><c-w>"] = false,
+                  ["<c-w>H"] = false,
+                  ["<c-w>J"] = false,
+                  ["<c-w>K"] = false,
+                  ["<c-w>L"] = false,
+                  -- ["?"] = "toggle_help_input",
+                  -- ["G"] = "list_bottom",
+                  -- ["gg"] = "list_top",
+                  -- ["j"] = "list_down",
+                  -- ["k"] = "list_up",
+                  -- ["q"] = "close",
+                },
+              },
+              list = {
+                keys = {
+                  -- ["/"] = "toggle_focus",
+                  -- ["<2-LeftMouse>"] = "confirm",
+                  -- ["<CR>"] = "confirm",
+                  ["<Down>"] = false,
+                  ["<Esc>"] = false,
+                  ["<S-CR>"] = false,
+                  ["<S-Tab>"] = false,
+                  -- ["<Tab>"] = { "select_and_next", mode = { "n", "x" } },
+                  ["<Up>"] = false,
+                  ["<a-d>"] = false,
+                  -- ["<a-f>"] = "toggle_follow",
+                  ["<a-h>"] = false,
+                  ["<a-i>"] = false,
+                  -- ["<a-m>"] = "toggle_maximize",
+                  ["<a-p>"] = false,
+                  ["<a-w>"] = false,
+                  -- ["<c-a>"] = "select_all",
+                  -- ["<c-b>"] = "preview_scroll_up",
+                  -- ["<c-f>"] = "preview_scroll_down",
+                  -- ["<c-d>"] = "list_scroll_down",
+                  -- ["<c-u>"] = "list_scroll_up",
+                  ["<c-j>"] = false,
+                  ["<c-k>"] = false,
+                  ["<c-n>"] = false,
+                  ["<c-p>"] = false,
+                  ["<c-q>"] = false,
+                  -- ["<c-s>"] = "edit_split",
+                  -- ["<c-t>"] = "tab",
+                  -- ["<c-v>"] = "edit_vsplit",
+                  ["<c-w>H"] = false,
+                  ["<c-w>J"] = false,
+                  ["<c-w>K"] = false,
+                  ["<c-w>L"] = false,
+                  -- ["?"] = "toggle_help_list",
+                  -- ["G"] = "list_bottom",
+                  -- ["gg"] = "list_top",
+                  ["i"] = "inspect",
+                  -- ["j"] = "list_down",
+                  -- ["k"] = "list_up",
+                  -- ["q"] = "close",
+                  ["zb"] = false,
+                  ["zt"] = false,
+                  ["zz"] = false,
+                  -- explorer specific keymaps
+                  -- ["<BS>"] = "explorer_up",
+                  ["l"] = false,
+                  ["h"] = false,
+                  -- ["a"] = "explorer_add",
+                  -- ["d"] = "explorer_del",
+                  -- ["r"] = "explorer_rename",
+                  -- ["c"] = "explorer_copy",
+                  -- ["m"] = "explorer_move",
+                  ["o"] = false,
+                  -- ["P"] = "toggle_preview",
+                  -- ["y"] = { "explorer_yank", mode = { "n", "x" } },
+                  -- ["p"] = "explorer_paste",
+                  -- ["u"] = "explorer_update",
+                  ["<c-c>"] = false,
+                  ["<leader>/"] = false,
+                  ["<c-t>"] = false,
+                  -- ["."] = "explorer_focus",
+                  -- ["I"] = "toggle_ignored",
+                  -- ["H"] = "toggle_hidden",
+                  -- ["Z"] = "explorer_close_all",
+                  ["]g"] = "explorer_git_next",
+                  ["[g"] = "explorer_git_prev",
+                  ["]d"] = "explorer_diagnostic_next",
+                  ["[d"] = "explorer_diagnostic_prev",
+                  ["]w"] = "explorer_warn_next",
+                  ["[w"] = "explorer_warn_prev",
+                  ["]e"] = "explorer_error_next",
+                  ["[e"] = "explorer_error_prev",
+
+                  -- added
+                  ["w"] = { { "pick_win", "jump" } },
                 },
               },
             },
