@@ -68,21 +68,14 @@ return {
     "ibhagwan/fzf-lua",
     -- stylua: ignore
     keys = function()
-      --- @type fun(fn: fun(opts: { regex_filter: function })): function
-      local function lsp_symbols(fn)
-        local function symbols_filter(entry, ctx)
-          if ctx.symbols_filter == nil then
-            ctx.symbols_filter = LazyVim.config.get_kind_filter(ctx.bufnr)
-              or false
-          end
-          if ctx.symbols_filter == false then
-            return true
-          end
-          return vim.tbl_contains(ctx.symbols_filter, entry.kind)
+      local function symbols_filter(entry, ctx)
+        if ctx.symbols_filter == nil then
+          ctx.symbols_filter = LazyVim.config.get_kind_filter(ctx.bufnr) or false
         end
-        return function()
-          fn({ regex_filter = symbols_filter })
+        if ctx.symbols_filter == false then
+          return true
         end
+        return vim.tbl_contains(ctx.symbols_filter, entry.kind)
       end
 
       return {
@@ -95,8 +88,8 @@ return {
         { "<leader>ff", LazyVim.pick("files"), desc = "Find Files" },
         { "<leader>fg", "<cmd>FzfLua git_files<cr>", desc = "Find Git Files" },
         { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "Recent" },
-        { "<leader>fs", lsp_symbols(require("fzf-lua").lsp_document_symbols), desc = "Goto Symbol" },
-        { "<leader>fS", lsp_symbols(require("fzf-lua").lsp_live_workspace_symbols), desc = "Goto Symbol (Workspace)" },
+        { "<leader>fs", function () require("fzf-lua").lsp_document_symbols( { regex_filter = symbols_filter } ) end, desc = "Goto Symbol" },
+        { "<leader>fS", function () require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol (Workspace)" },
         { "<leader>f<tab>", "<cmd>FzfLua tabs<cr>", desc = "Tabs" },
         { "<leader>fm", "<cmd>FzfLua marks<cr>", desc = "Bookmarks" },
         { "<leader>fh", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
