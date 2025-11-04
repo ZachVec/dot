@@ -3,6 +3,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      folds = {
+        enabled = false,
+      },
       servers = {
         -- stylua: ignore
         clangd = {
