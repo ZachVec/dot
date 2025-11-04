@@ -311,6 +311,11 @@ return {
         width = 0.2,
         default_direction = "left",
       },
+      backends = {
+        lua = { "treesitter" },
+        yaml = { "treesitter" },
+        json = { "treesitter" },
+      },
     },
   },
 }
