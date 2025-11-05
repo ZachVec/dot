@@ -184,9 +184,9 @@ return {
                   -- ["j"] = "list_down",
                   -- ["k"] = "list_up",
                   -- ["q"] = "close",
-                  ["zb"] = false,
-                  ["zt"] = false,
-                  ["zz"] = false,
+                  -- ["zb"] = false,
+                  -- ["zt"] = false,
+                  -- ["zz"] = false,
                   -- explorer specific keymaps
                   -- ["<BS>"] = "explorer_up",
                   ["l"] = false,
@@ -259,6 +259,9 @@ return {
         map("n", "<leader>gd", function()
           gs.diffthis("~")
         end, "Diff This")
+        map("n", "<leader>eb", function()
+          gs.blame()
+        end, "Blame explorer")
       end,
       preview_config = {
         border = "rounded",
