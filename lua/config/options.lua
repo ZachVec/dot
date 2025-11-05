@@ -6,5 +6,6 @@ vim.g.snacks_animate = false
 vim.g.trouble_lualine = false
 vim.opt.showtabline = 0
 vim.opt.expandtab = true
+-- vim.g.lazyvim_debug_set_default = true
 
 vim.lsp.set_log_level("OFF")

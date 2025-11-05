@@ -184,9 +184,9 @@ return {
                   -- ["j"] = "list_down",
                   -- ["k"] = "list_up",
                   -- ["q"] = "close",
-                  -- ["zb"] = false,
-                  -- ["zt"] = false,
-                  -- ["zz"] = false,
+                  -- ["zb"] = "list_scroll_bottom",
+                  -- ["zt"] = "list_scroll_top",
+                  -- ["zz"] = "list_scroll_center",
                   -- explorer specific keymaps
                   -- ["<BS>"] = "explorer_up",
                   ["l"] = false,
@@ -261,7 +261,7 @@ return {
         end, "Diff This")
         map("n", "<leader>eb", function()
           gs.blame()
-        end, "Blame explorer")
+        end, "Blame Explorer")
       end,
       preview_config = {
         border = "rounded",

@@ -89,7 +89,7 @@ return {
         { "<leader>fg", "<cmd>FzfLua git_files<cr>", desc = "Find Git Files" },
         { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "Recent" },
         -- { "<leader>fs", function () require("fzf-lua").lsp_document_symbols( { regex_filter = symbols_filter } ) end, desc = "Goto Symbol" },
-        { "<leader>fS", function () require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter }) end, desc = "Symbol (Workspace)" },
+        { "<leader>fS", function () require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter }) end, desc = "Symbols (Workspace)" },
         { "<leader>f<tab>", "<cmd>FzfLua tabs<cr>", desc = "Tabs" },
         { "<leader>fm", "<cmd>FzfLua marks<cr>", desc = "Bookmarks" },
         { "<leader>fh", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
@@ -139,7 +139,7 @@ return {
     "stevearc/aerial.nvim",
     keys = function()
       return {
-        { "<leader>es", "<cmd>AerialToggle<cr>", desc = "Document symbols" },
+        { "<leader>es", "<cmd>AerialToggle<cr>", desc = "Symbols Explorer" },
         { "<leader>fs", function () require("aerial").snacks_picker() end, desc = "Symbols (Document)" }
       }
     end,
