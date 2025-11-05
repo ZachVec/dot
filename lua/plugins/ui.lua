@@ -11,7 +11,7 @@ return {
         globalstatus = vim.o.laststatus == 3,
         disabled_filetypes = {
           winbar = { "snacks_dashboard", "neo-tree", "aerial", "snacks_picker_input", "snacks_picker_list", "snacks_layout_box", },
-          statusline = { "snacks_dashboard", "aerial" },
+          statusline = { "snacks_dashboard", "aerial", "lazy" },
         },
       }
 
