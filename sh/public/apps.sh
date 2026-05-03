@@ -1,3 +1,6 @@
+# starship
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+
 # cargo
 [ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
