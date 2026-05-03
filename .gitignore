@@ -1,5 +1,6 @@
 *
 !.gitignore
+!.gitmodules
 
 !git/
 !git/**/*
@@ -7,8 +8,7 @@
 !lazygit/
 !lazygit/**/*
 
-!nvim/
-!nvim/**/*
+!nvim
 
 !starship/
 !starship/**/*
@@ -22,7 +22,24 @@ tmux/plugins/
 
 !zsh/
 !zsh/**/*
-zsh/private/
 zsh/private/**/*
+!zsh/private/.gitkeep
+
+!bash/
+!bash/**/*
+bash/private/**/*
+!bash/private/.gitkeep
+
+!sh/
+!sh/**/*
+sh/private/**/*
+!sh/private/.gitkeep
 
 !README.md
+
+# Always ignore
+**/.claude/
+**/.zcompdump
+*.tmp
+*.swp
+*~

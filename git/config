@@ -7,3 +7,5 @@
 	name = Zach
 [init]
 	defaultBranch = master
+[core]
+	excludesfile = /home/zach/.config/git/ignore

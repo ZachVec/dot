@@ -1,3 +1,4 @@
+# Common aliases for both bash and zsh
 alias vi="nvim"
 alias ll="ls -lah"
 alias ..="cd .."
