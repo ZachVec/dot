@@ -1,11 +1,12 @@
-[http "https://github.com"]
-	proxy = socks5://127.0.0.1:7890
-[https "https://github.com"]
-	proxy = socks5://127.0.0.1:7890
 [user]
-	email = zijiebing@gmail.com
-	name = Zach
+    email = zijiebing@gmail.com
+    name = Zach
 [init]
-	defaultBranch = master
+    defaultBranch = master
 [core]
-	excludesfile = /home/zach/.config/git/ignore
+    excludesfile = /home/zach/.config/git/ignore
+[filter "lfs"]
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
