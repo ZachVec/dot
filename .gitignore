@@ -36,6 +36,7 @@ sh/private/**/*
 !sh/private/.gitkeep
 
 !README.md
+!CLAUDE.md
 
 # Always ignore
 **/.claude/

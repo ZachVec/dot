@@ -1,3 +1,11 @@
+# shellcheck disable=SC1091
+
+# Redirect dotfile histories to XDG paths
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node/repl_history"
+export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite/history"
+export WGET_HSTS="$XDG_CACHE_HOME/wget-hsts"
+
 # starship
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
@@ -6,8 +14,6 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
 # NVM
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # homebrew
 export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"

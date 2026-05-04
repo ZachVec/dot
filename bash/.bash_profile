@@ -1,17 +1,19 @@
 # shellcheck disable=SC1090,SC1091
 shopt -s nullglob
 
-# Bootstrap: source shared env (hardcoded path — XDG_CONFIG_HOME not set yet)
-for file in "$HOME/.config/sh/public/"*.sh; do
+# XDG base directories — must be set before sourcing sh/public/
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# Source shared profile configs (exports, env vars)
+for file in "$XDG_CONFIG_HOME/sh/public/profile/"*.sh; do
   [ -f "$file" ] && source "$file"
 done
-
-# Source shared private env vars
-if [[ -d "$XDG_CONFIG_HOME/sh/private" ]]; then
-  for file in "$XDG_CONFIG_HOME/sh/private/"*.sh; do
-    [ -f "$file" ] && source "$file"
-  done
-fi
+for file in "$XDG_CONFIG_HOME/sh/private/profile/"*.sh; do
+  [ -f "$file" ] && source "$file"
+done
 
 # Chain to .bashrc for interactive login shells
 [[ -f ~/.bashrc ]] && source ~/.bashrc
