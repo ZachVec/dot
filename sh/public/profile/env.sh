@@ -13,7 +13,7 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 [ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # NVM
-export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+export NVM_DIR="$XDG_DATA_HOME/nvm"
 
 # homebrew
 export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
