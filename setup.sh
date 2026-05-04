@@ -38,7 +38,8 @@ CONFIG_DIR="$HOME/.config"
 backup() {
     local target="$1"
     if [[ -e "$target" || -L "$target" ]]; then
-        local backup="${target}.bak.$(date +%s)"
+        local backup
+        backup="${target}.bak.$(date +%s)"
         mv "$target" "$backup"
         warn "Backed up $target → $backup"
     fi
