@@ -29,13 +29,13 @@ config.window_padding = {
 config.cursor_blink_rate = 0
 config.text_blink_rate_rapid = 0
 
-if wezterm.target_triple:find("apple-darwin") ~= nil then
+if wezterm.target_triple:find("apple%-darwin") ~= nil then
   config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
   config.font = wezterm.font_with_fallback({
     { family = "Hack Nerd Font", weight = "Regular", stretch = "Normal", style = "Normal" },
     "PingFang SC",
   })
-elseif wezterm.target_triple:find("linux-gnu") ~= nil then
+elseif wezterm.target_triple:find("linux%-gnu") ~= nil then
   -- NOTE: not tested
   config.window_decorations = "RESIZE"
 end
