@@ -37,6 +37,7 @@ sh/private/**/*
 
 !README.md
 !CLAUDE.md
+!setup.sh
 
 # Always ignore
 **/.claude/
